@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天岳平江 · 美食·文化·习俗 数字手册 — 平江县青少年科技创新大赛作品</title>
+<style>
+  :root{
+    --green:#0e6b5c; --green-d:#0a4d42; --teal:#12856f; --gold:#c98a2b; --gold-l:#f4e3c1;
+    --red:#b23b2e; --ink:#2a2620; --muted:#6b6152; --paper:#faf6ee; --card:#fffdf7;
+    --line:#e7ddc8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;
+    background:var(--paper); color:var(--ink); line-height:1.8;
+  }
+  a{color:var(--green); text-decoration:none;}
+
+  /* 顶部导航 */
+  .topbar{
+    position:sticky; top:0; z-index:50; background:rgba(14,107,92,.97);
+    color:#fff; display:flex; align-items:center; gap:18px; padding:0 22px;
+    height:56px; overflow-x:auto; box-shadow:0 2px 10px rgba(0,0,0,.18);
+  }
+  .topbar .logo{font-weight:800; letter-spacing:1px; white-space:nowrap; font-family:"KaiTi","STKaiti",serif; font-size:19px;}
+  .topbar nav{display:flex; gap:4px;}
+  .topbar nav a{
+    color:#d9f0ea; font-size:14.5px; padding:7px 14px; cursor:pointer;
+    border-radius:8px; white-space:nowrap; font-family:inherit; display:inline-block;
+  }
+  .topbar nav a:hover{background:rgba(255,255,255,.14); color:#fff;}
+  .topbar nav a.active{background:#fff; color:var(--green-d); font-weight:700;}
+
+  /* 封面 */
+  header.hero{
+    position:relative; overflow:hidden; color:#fff; text-align:center;
+    background:linear-gradient(rgba(8,63,62,.55), rgba(14,107,92,.6)), url('images/hero.jpg') center/cover no-repeat, linear-gradient(160deg,#0a4d42 0%,#12856f 55%,#3fae8f 100%);
+    padding:64px 22px 90px;
+  }
+  header.hero svg.mount{position:absolute; left:0; right:0; bottom:0; width:100%; height:120px;}
+  header.hero h1{
+    font-family:"KaiTi","STKaiti","FangSong",serif; font-size:44px; letter-spacing:6px;
+    margin-bottom:12px; text-shadow:0 2px 8px rgba(0,0,0,.25);
+  }
+  header.hero .sub{font-size:16px; opacity:.96; max-width:720px; margin:0 auto 24px;}
+  .purpose-strip{
+    display:inline-block; background:var(--gold-l); color:#5b3a0a; border-radius:12px;
+    padding:14px 22px; max-width:760px; text-align:left; font-size:14.5px;
+    border:1px solid #ecd7a5; box-shadow:0 4px 14px rgba(0,0,0,.12);
+  }
+  .purpose-strip b{color:var(--gold);}
+  .hero .btn{
+    display:inline-block; margin-top:22px; background:var(--gold); color:#3a2a00;
+    border-radius:999px; padding:11px 30px; font-size:15px; font-weight:700;
+    box-shadow:0 4px 14px rgba(0,0,0,.2);
+  }
+  .hero .btn:hover{filter:brightness(1.06);}
+
+  main{max-width:1080px; margin:0 auto; padding:30px 18px 60px;}
+  section.sec-block{margin-bottom:48px; scroll-margin-top:76px;}
+
+  h2.sec{
+    font-family:"KaiTi","STKaiti",serif; font-size:28px; color:var(--green-d);
+    text-align:center; margin-bottom:8px; letter-spacing:3px;
+  }
+  .sec-sub{text-align:center; color:var(--muted); font-size:14px; margin-bottom:24px;}
+  .lead{font-size:15.5px; text-align:justify; margin-bottom:22px;}
+
+  /* 概览数字 */
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:20px 0 28px;}
+  .stat{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    text-align:center; padding:0 12px 18px; box-shadow:0 2px 8px rgba(60,50,20,.05); overflow:hidden;
+  }
+  .stat-img{width:100%; height:112px; object-fit:cover; display:block;}
+  .stat .n{font-size:30px; font-weight:800; color:var(--green); font-family:Georgia,serif; margin-top:12px;}
+  .stat .t{font-size:13.5px; color:var(--muted); margin-top:4px;}
+
+  /* 卡片网格 */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px;}
+  .fcard{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:22px 22px 18px; box-shadow:0 2px 10px rgba(60,50,20,.06);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .fcard:hover{transform:translateY(-4px); box-shadow:0 8px 22px rgba(60,50,20,.13);}
+  .fcard .icon{font-size:40px; line-height:1; margin-bottom:10px;}
+  .fcard h3{font-size:18px; color:var(--green-d); margin-bottom:4px;}
+  .fcard .tagline{font-size:12.5px; color:var(--gold); font-weight:700; margin-bottom:8px; letter-spacing:1px;}
+  .fcard p{font-size:14.5px; text-align:justify;}
+  .fcard .kw{display:inline-block; background:#eef4ef; color:var(--green); border-radius:6px; font-size:12px; padding:1px 8px; margin-top:10px; margin-right:4px;}
+
+  /* 文化卡片（左图标） */
+  .cul-list{display:flex; flex-direction:column; gap:16px;}
+  .cul{
+    display:flex; gap:16px; background:var(--card); border:1px solid var(--line);
+    border-radius:14px; padding:18px 20px; align-items:flex-start;
+  }
+  .cul .icon{font-size:34px; line-height:1; min-width:52px; text-align:center;}
+  .cul h3{font-size:17px; color:var(--green-d); margin-bottom:3px;}
+  .cul p{font-size:14.5px; text-align:justify;}
+  .badge{display:inline-block; background:#fbe9e6; color:var(--red); font-size:12px; border-radius:6px; padding:1px 8px; margin-left:6px; font-weight:700;}
+  .card-img{width:100%; height:150px; object-fit:cover; border-radius:10px; margin-bottom:12px; display:block;}
+  .cul-img{width:132px; height:112px; object-fit:cover; border-radius:10px; flex-shrink:0;}
+
+  /* 问答（纯 CSS，无需脚本即可作答） */
+  .quiz{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 24px; margin-bottom:20px;}
+  .quiz .q{font-size:16.5px; font-weight:700; margin-bottom:12px;}
+  .quiz .q span{color:var(--gold); margin-right:6px;}
+  .opt{position:relative; display:block; margin:7px 0; cursor:pointer;}
+  .opt input{position:absolute; opacity:0; width:0; height:0;}
+  .opt span{
+    display:block; background:#f7f3e9; border:1.5px solid var(--line); border-radius:10px;
+    padding:10px 14px; font-size:14.5px; transition:background .15s, border-color .15s;
+  }
+  .opt:hover span{background:#efe7d4;}
+  .opt.correct input:checked + span{background:#d7f0d7; border-color:#2e9e3e; font-weight:700;}
+  .opt:not(.correct) input:checked + span{background:#fbdcd6; border-color:#d64533;}
+  .answer{margin-top:10px;}
+  .answer summary{cursor:pointer; color:var(--green-d); font-weight:700; font-size:14px; display:inline-block; background:#eef4ef; border-radius:8px; padding:6px 12px;}
+  .answer p{margin-top:8px; background:#eef4ef; border-radius:8px; padding:8px 12px; font-size:13.5px; color:var(--green-d);}
+
+  /* 创作目的页 */
+  .purpose-box{background:var(--card); border:1px solid var(--line); border-left:6px solid var(--gold); border-radius:12px; padding:20px 24px; margin-bottom:18px;}
+  .purpose-box h3{color:var(--gold); font-size:18px; margin-bottom:8px;}
+  .purpose-box ol{margin-left:22px; font-size:15px;}
+  .purpose-box ol li{margin:5px 0;}
+  .info-form{background:#eef4ef; border:1px dashed #bcd4c8; border-radius:12px; padding:16px 20px; font-size:14px;}
+  .info-form b{color:var(--green-d);}
+  .backtop{text-align:center; margin-top:10px;}
+  .backtop a{display:inline-block; background:var(--green); color:#fff; border-radius:999px; padding:9px 24px; font-size:14px;}
+  .backtop a:hover{background:var(--green-d);}
+
+  footer{
+    text-align:center; color:#8a7f6c; font-size:12.5px; padding:24px 16px;
+    border-top:1px solid var(--line); background:#f3ecdd;
+  }
+  @media print{
+    .topbar{display:none;}
+    header.hero{padding:30px;}
+    .fcard,.cul,.quiz,.stat{box-shadow:none;}
+  }
+  @media (max-width:640px){
+    header.hero h1{font-size:32px; letter-spacing:3px;}
+    .cul{flex-direction:column;}
+  }
+</style>
+
+<style>
+/* ===== 丝滑动效增强（纯 CSS，无需脚本） ===== */
+body{animation:fadePage .5s ease both; -webkit-font-smoothing:antialiased;}
+@keyframes fadePage{from{opacity:0}to{opacity:1}}
+
+/* 封面：标题依次浮现 + 背景缓缓流动 */
+header.hero h1{animation:fadeUp .9s cubic-bezier(.22,.61,.36,1) both;}
+header.hero .sub{animation:fadeUp .9s cubic-bezier(.22,.61,.36,1) .12s both;}
+.purpose-strip{animation:fadeUp .9s cubic-bezier(.22,.61,.36,1) .24s both;}
+header.hero svg.mount{animation:floaty 6s ease-in-out infinite;}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes fadeUp{from{opacity:0; transform:translateY(22px)}to{opacity:1; transform:none}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* 卡片：柔和悬浮 + 弹性缓动 */
+.fcard,.cul,.stat,.purpose-box,.quiz{
+  transition:transform .38s cubic-bezier(.22,.61,.36,1), box-shadow .38s cubic-bezier(.22,.61,.36,1), border-color .3s ease;
+}
+.fcard:hover{transform:translateY(-6px) scale(1.015); box-shadow:0 16px 38px rgba(60,50,20,.16); border-color:#d9c9a6;}
+.cul:hover{transform:translateX(6px); box-shadow:0 12px 28px rgba(60,50,20,.13); border-color:#d9c9a6;}
+.stat:hover{transform:translateY(-5px) scale(1.03); box-shadow:0 10px 26px rgba(60,50,20,.13);}
+.purpose-box:hover{transform:translateY(-3px); box-shadow:0 12px 26px rgba(60,50,20,.11);}
+.quiz:hover{box-shadow:0 10px 26px rgba(60,50,20,.09);}
+
+/* 图标微微回弹 */
+.fcard .icon,.cul .icon{display:inline-block; transition:transform .45s cubic-bezier(.34,1.56,.64,1);}
+.fcard:hover .icon{transform:scale(1.18) rotate(-5deg);}
+.cul:hover .icon{transform:scale(1.12);}
+
+/* 问答选项丝滑 */
+.opt span{transition:all .28s cubic-bezier(.22,.61,.36,1);}
+.opt:hover span{transform:translateX(5px);}
+.opt input:checked + span{animation:pop .32s cubic-bezier(.34,1.56,.64,1);}
+@keyframes pop{0%{transform:scale(.97)}55%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+/* 解析展开丝滑 */
+.answer summary{transition:all .3s ease;}
+.answer summary:hover{background:#dff0ea; transform:translateY(-1px);}
+.answer p{animation:fadeUp .35s ease both;}
+
+/* 滚动进入（仅支持的浏览器生效，其它自动忽略） */
+@supports (animation-timeline: view()){
+  .sec-block{animation:reveal both; animation-timeline:view(); animation-range:entry 0% entry 30%;}
+  @keyframes reveal{from{opacity:0; transform:translateY(28px)}to{opacity:1; transform:none}}
+}
+
+/* 选中高亮 & 滚动条 */
+::selection{background:rgba(18,133,111,.24); color:inherit;}
+::-webkit-scrollbar{width:10px; height:10px;}
+::-webkit-scrollbar-track{background:#f3ecdd;}
+::-webkit-scrollbar-thumb{background:#c9b98f; border-radius:99px;}
+::-webkit-scrollbar-thumb:hover{background:#b39a6a;}
+
+/* 键盘可达性 */
+a:focus-visible, summary:focus-visible, .opt input:focus-visible + span{outline:2px solid var(--teal); outline-offset:2px;}
+
+/* 打印时关闭所有动效，避免内容不可见 */
+@media print{
+  *{animation:none !important; transition:none !important;}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>天岳平江 · 山水人文</h1>
+  <p class="sub">一份带你走进平江「美食 · 文化 · 习俗」的互动数字手册<br>—— 平江县青少年科技创新大赛参赛作品</p>
+  <div class="purpose-strip">
+    <b>🎯 创作目的：</b>用一张会"说话"的网页，把平江的辣条之乡、酱干腐乳、幕阜天岳、汨罗龙舟和九龙舞等乡土记忆装进屏幕，让更多同学和游客<b>一眼看懂平江、一口尝懂平江、一心记住平江</b>。
+  </div>
+  <svg class="mount" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,80 L180,20 L320,70 L470,10 L640,75 L810,25 L960,78 L1120,40 L1200,70 L1200,120 L0,120 Z" fill="rgba(255,255,255,.14)"/>
+    <path d="M0,95 L220,55 L420,95 L620,50 L820,95 L1020,60 L1200,92 L1200,120 L0,120 Z" fill="rgba(255,255,255,.22)"/>
+  </svg>
+</header>
+
+<main>
+
+  <!-- ============ 首页概览 ============ -->
+  <section class="sec-block" id="home">
+    <h2 class="sec">你好，这里是平江</h2>
+    <p class="sec-sub">湘东北 · 幕阜山与汨罗江之间的一方宝地</p>
+    <p class="lead">
+      平江县位于湖南省东北部，北靠幕阜山，南临连云山，汨罗江穿境而过，山环水抱、物阜民丰。
+      这里既是中国革命的重要策源地之一，也是诗圣杜甫长眠之地，更以"辣条之乡"闻名全国。
+      千年山水滋养出独特的美食、文化与习俗，本手册将带你逐一探寻。
+    </p>
+    <div class="stats">
+      <div class="stat"><img class="stat-img" src="images/stat-1998.jpg" alt="辣条之乡"><div class="n">1998</div><div class="t">辣条诞生于平江</div></div>
+      <div class="stat"><img class="stat-img" src="images/stat-jiulong.png" alt="九龙舞"><div class="n">1</div><div class="t">项国家级非遗·九龙舞</div></div>
+      <div class="stat"><img class="stat-img" src="images/stat-1928.jpg" alt="平江起义"><div class="n">1928</div><div class="t">平江起义</div></div>
+      <div class="stat"><img class="stat-img" src="images/stat-tianyue.jpg" alt="幕阜山天岳"><div class="n">天岳</div><div class="t">幕阜山古称</div></div>
+      <div class="stat"><img class="stat-img" src="images/stat-miluo.jpg" alt="汨罗江"><div class="n">汨罗江</div><div class="t">贯穿全县的母亲河</div></div>
+      <div class="stat"><img class="stat-img" src="images/stat-dufu.jpg" alt="杜甫墓"><div class="n">杜甫</div><div class="t">诗圣长眠之地</div></div>
+    </div>
+    <p class="lead" style="text-align:center;">
+      👇 点击上方导航，从 <b>美食</b> 开始，一路逛到 <b>习俗</b>，最后来挑战 <b>互动问答</b> 吧！
+    </p>
+  </section>
+
+  <!-- ============ 平江美食 ============ -->
+  <section class="sec-block" id="food">
+    <h2 class="sec">🍜 平江美食</h2>
+    <p class="sec-sub">一方水土养一方味道，辣的、香的、鲜的，都是平江味</p>
+    <div class="grid">
+
+      <div class="fcard">
+        <img class="card-img" src="images/food-latiao.jpg" alt="平江辣条">
+        <div class="icon">🌶</div>
+        <h3>平江辣条（面筋）</h3>
+        <div class="tagline">"辣条之乡"的诞生地</div>
+        <p>1998 年，平江人用面粉代替大豆，创造出第一根辣条。麻辣鲜香、嚼劲十足，从平江走向全国，成为一代人的童年记忆。</p>
+        <span class="kw">麻辣鲜香</span><span class="kw">国民零食</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/food-jiangan.jpg" alt="平江酱干">
+        <div class="icon">🫘</div>
+        <h3>平江酱干（长寿酱干）</h3>
+        <div class="tagline">国家地理标志产品</div>
+        <p>又称"长寿酱干"，起源久远。选用优质黄豆，配以山泉水和传统卤制工艺，卤香浓郁、嚼劲十足，佐餐下酒两相宜。</p>
+        <span class="kw">卤香浓郁</span><span class="kw">嚼劲十足</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/food-furu.jpg" alt="平江腐乳">
+        <div class="icon">🧀</div>
+        <h3>平江腐乳</h3>
+        <div class="tagline">红油香辣 · 佐粥一绝</div>
+        <p>以本地黄豆和山泉水酿制，经过发酵、裹料、封坛等多道工序，红油香辣、入口绵软，是平江人饭桌上离不开的家乡味。</p>
+        <span class="kw">红油香辣</span><span class="kw">绵软下饭</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/food-youcha.jpg" alt="平江油茶">
+        <div class="icon">🌰</div>
+        <h3>平江油茶</h3>
+        <div class="tagline">幕阜山里的"液体黄金"</div>
+        <p>平江是油茶种植大县，幕阜山、连云山的油茶果榨出的山茶油清香健康、营养丰富，被誉为"液体黄金"。</p>
+        <span class="kw">清香健康</span><span class="kw">山茶油</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/food-huobeiyu.jpg" alt="平江火焙鱼">
+        <div class="icon">🐟</div>
+        <h3>平江火焙鱼</h3>
+        <div class="tagline">溪涧小鲜 · 柴火焙香</div>
+        <p>取自平江山间溪流的小鱼，经清洗、腌制后用柴火慢焙，香酥可口、回味悠长，是平江农家待客的招牌菜。</p>
+        <span class="kw">香酥可口</span><span class="kw">农家风味</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/food-gaoshancha.jpg" alt="平江高山茶">
+        <div class="icon">🍵</div>
+        <h3>平江高山茶</h3>
+        <div class="tagline">云雾缭绕 · 清香回甘</div>
+        <p>幕阜山、连云山云雾缭绕、昼夜温差大，出产的高山绿茶与烟茶清香回甘，是平江人待客的"山间清味"。</p>
+        <span class="kw">高山云雾</span><span class="kw">清香回甘</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/food-huangshanmian.jpg" alt="黄鳝面">
+        <div class="icon">🍜</div>
+        <h3>黄鳝面</h3>
+        <div class="tagline">鳝鲜汤浓 · 家乡面香</div>
+        <p>平江特色面食。取新鲜黄鳝与手工面条同煮，汤汁浓郁、鳝肉鲜嫩，一碗下肚，是平江游子最想念的家乡味。</p>
+        <span class="kw">鳝鲜汤浓</span><span class="kw">手工面</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/food-laroumian.png" alt="长寿腊肉面">
+        <div class="icon">🥓</div>
+        <h3>长寿腊肉面</h3>
+        <div class="tagline">柴火腊肉 · 咸香醇厚</div>
+        <p>平江长寿镇的腊肉远近闻名，肥瘦相间的腊肉配上筋道面条，咸香醇厚、回味绵长，是冬日里最暖胃的一碗。</p>
+        <span class="kw">柴火腊肉</span><span class="kw">咸香暖胃</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/food-zharou.jpg" alt="炸肉">
+        <div class="icon">🍖</div>
+        <h3>炸肉</h3>
+        <div class="tagline">平江十大碗 · 经典头菜</div>
+        <p>平江十大碗中的招牌菜。五花肉裹粉油炸至金黄，外酥里嫩、肥而不腻，是节庆宴席上不可或缺的一道硬菜。</p>
+        <span class="kw">外酥里嫩</span><span class="kw">宴席头菜</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ============ 文化瑰宝 ============ -->
+  <section class="sec-block" id="culture">
+    <h2 class="sec">🏛 文化瑰宝</h2>
+    <p class="sec-sub">红色的热土、诗圣的归宿、天岳的山水，都是平江的底气</p>
+    <div class="cul-list">
+
+      <div class="cul">
+        <img class="cul-img" src="images/cul-qiyi.jpg" alt="平江起义">
+        <div class="icon">🔥</div>
+        <div>
+          <h3>平江起义（1928）<span class="badge">红色记忆</span></h3>
+          <p>1928 年 7 月，彭德怀、滕代远、黄公略等在天岳书院发动平江起义，成立红五军，为中国革命作出重要贡献。平江起义旧址现为全国重点文物保护单位和纪念馆。</p>
+        </div>
+      </div>
+
+      <div class="cul">
+        <img class="cul-img" src="images/cul-dufu.jpg" alt="杜甫墓祠">
+        <div class="icon">📜</div>
+        <div>
+          <h3>杜甫墓祠 <span class="badge">人文圣地</span></h3>
+          <p>诗圣杜甫晚年漂泊洞庭，病逝后长眠于平江小田。后人在此修建杜甫墓祠，历代修葺，成为人们凭吊诗圣、传承诗教的精神圣地。</p>
+        </div>
+      </div>
+
+      <div class="cul">
+        <img class="cul-img" src="images/cul-mufu.jpg" alt="幕阜山">
+        <div class="icon">⛰</div>
+        <div>
+          <h3>幕阜山（天岳）<span class="badge">道教名山</span></h3>
+          <p>幕阜山古称"天岳"，是湘东北名山与道教名山，山高林密、云海日出壮观，有"五岳之外有天岳"之说，是天然的生态屏障与避暑胜地。</p>
+        </div>
+      </div>
+
+      <div class="cul">
+        <img class="cul-img" src="images/cul-shiniuzhai.jpg" alt="石牛寨">
+        <div class="icon">🏔</div>
+        <div>
+          <h3>石牛寨 <span class="badge">地质奇观</span></h3>
+          <p>石牛寨国家地质公园以丹霞地貌闻名，赤壁丹崖、奇峰林立，高空玻璃桥悬于峡谷之上，是"地质科普 + 户外体验"的热门目的地。</p>
+        </div>
+      </div>
+
+      <div class="cul">
+        <img class="cul-img" src="images/cul-miluo.jpg" alt="汨罗江">
+        <div class="icon">🌊</div>
+        <div>
+          <h3>汨罗江 <span class="badge">母亲河</span></h3>
+          <p>汨罗江贯穿平江全境，是全县人民的母亲河。这里流传着屈原行吟的故事，是端午龙舟文化的重要发祥地之一，滋养着两岸的田园与人家。</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ============ 民俗习俗 ============ -->
+  <section class="sec-block" id="custom">
+    <h2 class="sec">🐉 民俗习俗</h2>
+    <p class="sec-sub">千年传承的乡音与乡情，在节日里活起来</p>
+    <div class="grid">
+
+      <div class="fcard">
+        <img class="card-img" src="images/cus-jiulongwu.png" alt="九龙舞">
+        <div class="icon">🐉</div>
+        <h3>九龙舞</h3>
+        <div class="tagline">国家级非物质文化遗产</div>
+        <p>平江九龙舞气势恢宏，九条长龙同时舞动、变化万千，通常在元宵等喜庆节日上演，寓意风调雨顺、国泰民安，是平江最亮眼的民俗名片。</p>
+        <span class="kw">国家级非遗</span><span class="kw">元宵节</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/cus-piyingxi.jpg" alt="平江皮影戏">
+        <div class="icon">🎭</div>
+        <h3>平江皮影戏</h3>
+        <div class="tagline">光影之间的乡音</div>
+        <p>艺人一边操弄牛皮人偶，一边用方言唱念，在幕布后演绎忠孝节义的故事。皮影戏是平江珍贵的民间艺术，承载着几代人的童年记忆。</p>
+        <span class="kw">光影艺术</span><span class="kw">民间曲艺</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/cus-dengxi.jpg" alt="平江灯戏">
+        <div class="icon">🏮</div>
+        <h3>平江灯戏（花灯）</h3>
+        <div class="tagline">载歌载舞的节庆</div>
+        <p>每逢节庆，平江百姓扎花灯、唱灯戏，锣鼓喧天、载歌载舞，热闹非凡，寄托着对美好生活的期盼，是乡土味十足的民间狂欢。</p>
+        <span class="kw">花灯巡游</span><span class="kw">节庆歌舞</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/cus-longzhou.jpg" alt="端午龙舟">
+        <div class="icon">🚣</div>
+        <h3>端午龙舟</h3>
+        <div class="tagline">汨罗江上的千年传承</div>
+        <p>汨罗江是端午龙舟文化的重要发祥地。端午时节，江上鼓声震天、龙舟竞渡，纪念屈原、祈福安康，是平江最热血的传统习俗。</p>
+        <span class="kw">龙舟竞渡</span><span class="kw">纪念屈原</span>
+      </div>
+
+      <div class="fcard">
+        <img class="card-img" src="images/cus-tuideng.jpg" alt="泉水推灯">
+        <div class="icon">🏮</div>
+        <h3>泉水推灯</h3>
+        <div class="tagline">省级非遗 · 泉水村的千年灯俗</div>
+        <p>泉水推灯（灯舞）发源于平江县龙门镇泉水村，2023年列入湖南省非物质文化遗产。每逢春节，人们推着花灯走家串户、祈福纳祥，场面庄严而热闹，是平江最神秘的传统灯俗之一。</p>
+        <span class="kw">传统灯俗</span><span class="kw">祈福纳祥</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ============ 互动问答 ============ -->
+  <section class="sec-block" id="quiz">
+    <h2 class="sec">❓ 平江知多少</h2>
+    <p class="sec-sub">逛完展厅，来测测你对平江了解多少吧（共 6 题，点选项立刻看对错）</p>
+
+    <div class="quiz">
+      <div class="q"><span>第 1 题</span>平江被誉为中国的什么之乡？</div>
+      <label class="opt"><input type="radio" name="q1"><span>A. 酱干之乡</span></label>
+      <label class="opt correct"><input type="radio" name="q1"><span>B. 辣条之乡</span></label>
+      <label class="opt"><input type="radio" name="q1"><span>C. 油茶之乡</span></label>
+      <label class="opt"><input type="radio" name="q1"><span>D. 腐乳之乡</span></label>
+      <details class="answer"><summary>💡 查看解析</summary><p>正确答案：B。1998 年辣条诞生于平江，平江因此被称为「辣条之乡」。</p></details>
+    </div>
+
+    <div class="quiz">
+      <div class="q"><span>第 2 题</span>下列哪一项是平江的国家级非物质文化遗产？</div>
+      <label class="opt"><input type="radio" name="q2"><span>A. 平江皮影戏</span></label>
+      <label class="opt"><input type="radio" name="q2"><span>B. 平江灯戏</span></label>
+      <label class="opt correct"><input type="radio" name="q2"><span>C. 九龙舞</span></label>
+      <label class="opt"><input type="radio" name="q2"><span>D. 赛龙舟</span></label>
+      <details class="answer"><summary>💡 查看解析</summary><p>正确答案：C。九龙舞是平江的国家级非物质文化遗产，气势恢宏。</p></details>
+    </div>
+
+    <div class="quiz">
+      <div class="q"><span>第 3 题</span>1928 年在平江发生的重大历史事件是？</div>
+      <label class="opt correct"><input type="radio" name="q3"><span>A. 平江起义</span></label>
+      <label class="opt"><input type="radio" name="q3"><span>B. 秋收起义</span></label>
+      <label class="opt"><input type="radio" name="q3"><span>C. 南昌起义</span></label>
+      <label class="opt"><input type="radio" name="q3"><span>D. 湘南起义</span></label>
+      <details class="answer"><summary>💡 查看解析</summary><p>正确答案：A。1928 年 7 月，彭德怀、滕代远、黄公略等领导了平江起义。</p></details>
+    </div>
+
+    <div class="quiz">
+      <div class="q"><span>第 4 题</span>平江酱干的另一个名字是？</div>
+      <label class="opt correct"><input type="radio" name="q4"><span>A. 长寿酱干</span></label>
+      <label class="opt"><input type="radio" name="q4"><span>B. 五香豆干</span></label>
+      <label class="opt"><input type="radio" name="q4"><span>C. 烟熏香干</span></label>
+      <label class="opt"><input type="radio" name="q4"><span>D. 辣味豆干</span></label>
+      <details class="answer"><summary>💡 查看解析</summary><p>正确答案：A。平江酱干又称「长寿酱干」，是国家地理标志产品。</p></details>
+    </div>
+
+    <div class="quiz">
+      <div class="q"><span>第 5 题</span>与贯穿平江的汨罗江关系最密切的历史人物是？</div>
+      <label class="opt"><input type="radio" name="q5"><span>A. 杜甫</span></label>
+      <label class="opt correct"><input type="radio" name="q5"><span>B. 屈原</span></label>
+      <label class="opt"><input type="radio" name="q5"><span>C. 李白</span></label>
+      <label class="opt"><input type="radio" name="q5"><span>D. 范仲淹</span></label>
+      <details class="answer"><summary>💡 查看解析</summary><p>正确答案：B。汨罗江流传着屈原行吟的故事，是端午龙舟文化的重要发祥地之一。</p></details>
+    </div>
+
+    <div class="quiz">
+      <div class="q"><span>第 6 题</span>幕阜山的古称是？</div>
+      <label class="opt"><input type="radio" name="q6"><span>A. 衡岳</span></label>
+      <label class="opt correct"><input type="radio" name="q6"><span>B. 天岳</span></label>
+      <label class="opt"><input type="radio" name="q6"><span>C. 崀山</span></label>
+      <label class="opt"><input type="radio" name="q6"><span>D. 武功山</span></label>
+      <details class="answer"><summary>💡 查看解析</summary><p>正确答案：B。幕阜山古称「天岳」，有「五岳之外有天岳」之说。</p></details>
+    </div>
+
+  </section>
+
+  <!-- ============ 创作目的 ============ -->
+  <section class="sec-block" id="purpose">
+    <h2 class="sec">🎯 创作目的</h2>
+    <p class="sec-sub">为什么做这件作品？想解决什么问题、让谁受益？</p>
+
+    <div class="purpose-box">
+      <h3>一、让"平江故事"更容易被看见、被读懂</h3>
+      <ol>
+        <li>平江有辣条之乡、平江酱干、汨罗江、幕阜天岳、九龙舞等丰厚的乡土资源，但许多同学和外地游客只闻其名、不知其详；</li>
+        <li>本作品把分散的文字、图片和知识整合进一张互动网页，用"导航 + 卡片 + 问答"的形式，让人<b>一站式、轻松地</b>了解平江的美食、文化与习俗。</li>
+      </ol>
+    </div>
+
+    <div class="purpose-box">
+      <h3>二、用数字技术传播乡土文化</h3>
+      <ol>
+        <li>学习并运用 HTML、CSS、JavaScript 等网页技术，把传统文化装进数字载体，实现"老故事 + 新表达"；</li>
+        <li>互动问答环节让观众从"被动看"变成"主动学"，加深记忆，提升科普与传播效果。</li>
+      </ol>
+    </div>
+
+    <div class="purpose-box">
+      <h3>三、厚植热爱家乡的情感</h3>
+      <ol>
+        <li>希望通过这次创作，让更多平江青少年重新认识脚下的土地，增强文化自信与家乡认同感；</li>
+        <li>也欢迎外地朋友带着这份"数字手册"走进平江，尝一尝辣条酱干、看一看九龙起舞、游一游幕阜汨罗。</li>
+      </ol>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  天岳平江 · 美食·文化·习俗 数字手册 ｜ 平江县青少年科技创新大赛参赛作品<br>
+  <span style="font-size:15px; color:#5b4a2a; font-weight:700;">作者：平江县三阳中学　648班　胡恬溢</span><br>
+  内容仅供学习交流，请以权威资料为准
+</footer>
+
+</body>
+</html>
